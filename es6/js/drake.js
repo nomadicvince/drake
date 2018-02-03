@@ -1,4 +1,9 @@
-//Drake Equation Calculator version 1.0 authored by Vincent Moore
+/* 
+Drake Equation Calculator version 2.0 authored by Vincent Moore
+Refactored Feb 3, 2018 
+
+*/
+
 
 //Drake Equation explanation
 //https://www.kevinabarnes.com/drake-equation/
@@ -21,21 +26,25 @@ N = R * fp * ne * fl * fi * fc * L (Drake Equation Formula)
 
 // equation value variables
 
-var regex=/[0-9]/;
+    const regex=/[0-9]/,
+          R = document.getElementById("R").value,
+          fp = document.getElementById("Fp").value / 100,
+          Ne = document.getElementById("Ne").value,
+          fl = document.getElementById("Fl").value / 100,
+          fi = document.getElementById("Fi").value / 100,
+          fc = document.getElementById("Fc").value / 100,
+          L = document.getElementById("L").value;
 
-    //r values
-    let R = document.getElementById("R").value;
+    //r values   
 
     if (!R.match(regex)) {
       document.getElementById("r_error").innerHTML = "<p>Please enter a number</p>";
     } else {
       document.getElementById("r_error").innerHTML = "";
-    }
+    };
 
 
     //fp values
-    let fp = document.getElementById("Fp").value / 100;
-
     if (document.getElementById("Fp").value > 100) {
       document.getElementById("fp_error").innerHTML = "<p>Enter a number lower than 100</p>";
     } else {
@@ -43,54 +52,63 @@ var regex=/[0-9]/;
     }
 
     //ne values
-    let Ne = document.getElementById("Ne").value;
-
     if (!Ne.match(regex)) {
       document.getElementById("ne_error").innerHTML = "<p>Please enter a number</p>";
     } else {
       document.getElementById("ne_error").innerHTML = "";
     }
 
-    //fl values
-    let fl = document.getElementById("Fl").value / 100;
-
+    //Fl values
     if (document.getElementById("Fl").value > 100) {
       document.getElementById("fl_error").innerHTML = "<p>Enter a number lower than 100</p>";
     } else {
       document.getElementById("fl_error").innerHTML = "";
     }
 
-    //fi values
-    let fi = document.getElementById("Fi").value / 100;
-
+    //Fi values
     if (document.getElementById("Fi").value > 100) {
       document.getElementById("fi_error").innerHTML = "<p>Enter a number lower than 100</p>";
     } else {
       document.getElementById("fi_error").innerHTML = "";
     }
 
-    //fc values
-    let fc = document.getElementById("Fc").value / 100;
-
+    //Fc values
     if (document.getElementById("Fc").value > 100) {
       document.getElementById("fc_error").innerHTML = "<p>Enter a number lower than 100</p>";
     } else {
       document.getElementById("fc_error").innerHTML = "";
     }
 
-    let L = document.getElementById("L").value;
-
+    //L values
     if (!L.match(regex)) {
       document.getElementById("L_error").innerHTML = "<p>Please enter a number</p>";
     } else {
       document.getElementById("L_error").innerHTML = "";
     }
 
-  //Equation calculations
-    function mult() {
-    	var N = Math.floor(R * fp * Ne * fl * fi * fc * L);
-        return N.toLocaleString();
+    //Equation calculations
+    function mult(N) {
+        N = Math.floor(R * fp * Ne * fl * fi * fc * L);
+        
+        if (N === 0) {
+          return false;
+        } else if (N > 0) {
+          return N.toLocaleString();
+        } else {
+          return N.toLocaleString();
+        }                
     }
 
-    document.getElementById("calculate").innerHTML = "N = " + mult() + " detectable civilizations in the Milky Way";
+    const calculate = document.querySelector('#calculate');
+
+    if (mult() ===  false) {
+      calculate.innerHTML = `Unable to solve equation. Please try again.`;
+    } else if (mult() === 1) {
+      calculate.innerHTML = `N = ${mult()} detectable civilization in the Milky Way.`;
+    } else {
+      calculate.innerHTML = `N = ${mult()} detectable civilizations in the Milky Way.`;
+    }
+
+    console.log(mult());    
 }
+ 
