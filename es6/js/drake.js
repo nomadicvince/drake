@@ -8,7 +8,13 @@ Refactored Feb 3, 2018
 //Drake Equation explanation
 //https://www.kevinabarnes.com/drake-equation/
 
-function drakeEq() {
+const fire = document.getElementById("equation");
+
+fire.addEventListener('submit', drakeEq);
+
+function drakeEq(e) {
+
+  e.preventDefault();
 
 /*
 Values of the Equation
@@ -96,12 +102,13 @@ N = R * fp * ne * fl * fi * fc * L (Drake Equation Formula)
           return N.toLocaleString();
         } else {
           return N.toLocaleString();
-        }                
+        }
+                
     }
 
     const calculate = document.querySelector('#calculate');
 
-    if (mult() ===  false) {
+    if (mult() === false) {
       calculate.innerHTML = `Unable to solve equation. Please try again.`;
     } else if (mult() === 1) {
       calculate.innerHTML = `N = ${mult()} detectable civilization in the Milky Way.`;
@@ -109,6 +116,7 @@ N = R * fp * ne * fl * fi * fc * L (Drake Equation Formula)
       calculate.innerHTML = `N = ${mult()} detectable civilizations in the Milky Way.`;
     }
 
-    console.log(mult());    
+    console.log(mult());
+    
 }
  
