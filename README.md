@@ -1,2 +1,2 @@
-# drake
-Drake Equation written in ES6 and PHP
+# Drake Equation Calculator
+Drake Equation written in Vanilla JavaScript, React and PHP.
