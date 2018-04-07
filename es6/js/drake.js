@@ -108,9 +108,9 @@ N = R * fp * ne * fl * fi * fc * L (Drake Equation Formula)
 
     const calculate = document.querySelector('#calculate');
 
-    if (mult() === false) {
+    if (mult() == false) {
       calculate.innerHTML = `Unable to solve equation. Please try again.`;
-    } else if (mult() === 1) {
+    } else if (mult() == 1) {
       calculate.innerHTML = `N = ${mult()} detectable civilization in the Milky Way.`;
     } else {
       calculate.innerHTML = `N = ${mult()} detectable civilizations in the Milky Way.`;
